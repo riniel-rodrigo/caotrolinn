@@ -20,7 +20,9 @@ export const CardPet: React.FC<{
             {...props}
             icon="paw"
             color="#FFF"
-            style={{ backgroundColor: specie === "dog" ? "#8BC3D2" : "#E3ADAD" }}
+            style={{
+              backgroundColor: specie === "dog" ? "#8BC3D2" : "#E3ADAD",
+            }}
           />
         )}
         right={(props) => (

@@ -1,7 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Surface, Text } from "react-native-paper";
+import { Surface, Text, TextInput } from "react-native-paper";
 
+import { Separator } from "@/components/Separator";
 import { formatDate } from "@/components/formatDate";
 import { Pet } from "@/services/hostedPetsService";
 
@@ -22,40 +23,64 @@ export const DetailCard: React.FC<DetailCardProps> = ({ pet }) => {
           </View>
         </View>
 
+        <Separator />
+
         <View style={styles.petInfo}>
-          <Text style={styles.petInfoText}>
-            Data de entrada:{" "}
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="calendar" />
+            </Text>
+            <Text>Data de entrada: </Text>
             <Text style={styles.span}>{formatDate(pet.inputDate)}</Text>
-          </Text>
+          </View>
 
-          <Text style={styles.petInfoText}>
-            Diárias até o momento:{" "}
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="calendar-clock" />
+            </Text>
+            <Text>Diárias até o momento: </Text>
             <Text style={styles.span}>{pet.dailyRate}</Text>
-          </Text>
+          </View>
 
-          <Text style={styles.petInfoText}>
-            Previsão de data de saída:{" "}
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="calendar-check" />
+            </Text>
+            <Text>Previsão de data de saída: </Text>
             <Text style={styles.span}>
               {formatDate(pet.estimatedDeparture)}
             </Text>
-          </Text>
+          </View>
 
-          <Text style={styles.petInfoText}>
-            Diárias totais previstas:{" "}
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="clock-outline" />
+            </Text>
+            <Text>Diárias totais previstas: </Text>
             <Text style={styles.span}>{pet.totalExpectedDaily}</Text>
-          </Text>
+          </View>
         </View>
       </Surface>
 
       <Surface style={styles.surfaceOwner} elevation={1}>
         <View style={styles.petInfo}>
-          <Text style={styles.petInfoText}>
-            Nome do tutor: <Text style={styles.span}>{pet.petOwner}</Text>
-          </Text>
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="account" />
+            </Text>
+            <Text style={styles.petInfoText}>
+              Nome do tutor: <Text style={styles.span}>{pet.petOwner}</Text>
+            </Text>
+          </View>
 
-          <Text style={styles.petInfoText}>
-            Contato: <Text style={styles.span}>{pet.contact}</Text>
-          </Text>
+          <View style={styles.petInfoText}>
+            <Text>
+              <TextInput.Icon icon="phone" />
+            </Text>
+            <Text style={styles.petInfoText}>
+              Contato: <Text style={styles.span}>{pet.contact}</Text>
+            </Text>
+          </View>
         </View>
       </Surface>
     </View>
@@ -71,9 +96,8 @@ const styles = StyleSheet.create({
   surfacePet: {
     padding: 16,
     borderRadius: 10,
-    height: "35%",
+    height: "50%",
     width: "100%",
-    backgroundColor: "#d9e7eb",
     justifyContent: "space-around",
   },
   petHeader: {
@@ -93,10 +117,12 @@ const styles = StyleSheet.create({
     color: "#0A263B",
   },
   petInfo: {
-    gap: 8,
+    gap: 18,
   },
   petInfoText: {
-    fontSize: 17,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
   },
   span: {
     fontWeight: "bold",
@@ -107,7 +133,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: "20%",
     width: "100%",
-    backgroundColor: "#d9e7eb",
     justifyContent: "space-around",
   },
   OwnerContact: {
