@@ -17,7 +17,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ pet }) => {
           <Text style={styles.petName}>{pet.petName}</Text>
 
           <View style={styles.petCharacter}>
-            <Text>{pet.species}</Text>
+            <Text>{pet.species === "dog" ? "Cachorro" : "Gato"}</Text>
             <Text>{pet.breed}</Text>
           </View>
         </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: "35%",
     width: "100%",
-    backgroundColor: "#ebf0e7",
+    backgroundColor: "#d9e7eb",
     justifyContent: "space-around",
   },
   petHeader: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "100%",
     backgroundColor: "#d9e7eb",
-    justifyContent: "space-around", 
+    justifyContent: "space-around",
   },
   OwnerContact: {
     fontSize: 18,

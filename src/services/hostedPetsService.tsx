@@ -22,3 +22,17 @@ export async function getPetById(id: string): Promise<Pet> {
   const response = await caotrolinApi.get(`/hostedPet/${id}`);
   return response.data;
 }
+
+export async function editPet(id: string, pet: Pet): Promise<Pet> {
+  const response = await caotrolinApi.put(`/hostedPet/${id}`, pet);
+  return response.data;
+}
+
+export async function createPet(pet: Pet): Promise<Pet> {
+  const response = await caotrolinApi.post("/hostedPet", pet);
+  return response.data;
+}
+
+export async function deletePet(id: string): Promise<void> {
+  await caotrolinApi.delete(`/hostedPet/${id}`);
+}

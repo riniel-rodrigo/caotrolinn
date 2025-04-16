@@ -4,8 +4,11 @@ import { Avatar, Card } from "react-native-paper";
 export const CardPet: React.FC<{
   title: string;
   subtitle: string;
-  estimatedDeparture: Date;
-}> = ({ title, subtitle, estimatedDeparture }) => {
+  estimatedDeparture: string;
+  specie: string;
+}> = ({ title, subtitle, estimatedDeparture, specie }) => {
+
+  console.log(specie);
   return (
     <View style={styles.cardContainer}>
       <Card.Title
@@ -17,7 +20,7 @@ export const CardPet: React.FC<{
             {...props}
             icon="paw"
             color="#FFF"
-            style={{ backgroundColor: "#A0C35B" }}
+            style={{ backgroundColor: specie === "dog" ? "#8BC3D2" : "#E3ADAD" }}
           />
         )}
         right={(props) => (
