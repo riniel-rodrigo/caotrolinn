@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
-import { IconButton } from "react-native-paper";
+import { useEffect, useState } from "react";
+import { View, StyleSheet } from "react-native";
 
-import { Pet, getPetById } from "@/services/hostedPetsService";
 import { Container } from "@/components/Container";
 import { PetForm } from "@/components/PetForm";
+import { Pet, getPetById } from "@/services/hostedPetsService";
 
 export default function Edit() {
   const params = useLocalSearchParams<{ id: string }>();
