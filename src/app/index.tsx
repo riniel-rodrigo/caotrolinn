@@ -1,13 +1,14 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { Stack, Link } from "expo-router";
 import moment from "moment";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
   View,
   Text,
+  Button,
 } from "react-native";
 import { FAB, ActivityIndicator } from "react-native-paper";
 
@@ -19,6 +20,8 @@ import { getAllPets, Pet } from "@/services/hostedPetsService";
 export default function Home() {
   const [pets, setPets] = useState<Pet[]>([]);
   const [isloading, setIsLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [showRetry, setShowRetry] = useState(false);
 
   async function loadPets() {
     try {
@@ -37,6 +40,16 @@ export default function Home() {
     }, [])
   );
 
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isloading) {
+      timeout = setTimeout(() => {
+        setShowRetry(true);
+      }, 10000);
+    }
+    return () => clearTimeout(timeout);
+  }, [isloading]);
+
   return (
     <>
       <Stack.Screen />
@@ -44,6 +57,15 @@ export default function Home() {
         {isloading ? (
           <View style={styles.loadingContainer}>
             <ActivityIndicator animating color="#208BB5" size="large" />
+            {showRetry && (
+              <View style={{ marginTop: 40 }}>
+                <Button
+                  title="Tentar novamente"
+                  onPress={loadPets}
+                  color="#208BB5"
+                />
+              </View>
+            )}
           </View>
         ) : (
           <>
