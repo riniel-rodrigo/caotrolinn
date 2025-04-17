@@ -19,11 +19,11 @@ O backend da aplicação está disponível no repositório:
 ## 🛠️ Instalação e execução
 
 **Para Baixar o APK do app no seu dispositivo:**
-- link para download: [CaotrolinAPK](https://expo.dev/accounts/riniel/projects/caotrolinn/builds/87534116-b2c8-45d0-9bd2-5b1824357dd1)
+- link para download: [CaotrolinAPK](https://expo.dev/accounts/riniel/projects/caotrolinn/builds/5d87f23f-99a4-4dfa-be91-6276d3700e97)
 
 - ou escaneie o QRcode:
 
-![image](https://github.com/user-attachments/assets/756b8bd2-6f88-46d3-8200-0fe738bbf638)
+![image](https://github.com/user-attachments/assets/f93b344c-0553-4922-9d8d-69e832def978)
 
 **Para rodar o projeto localmente:**
 
