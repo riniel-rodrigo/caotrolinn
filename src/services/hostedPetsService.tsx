@@ -9,7 +9,7 @@ export interface Pet {
   breed: string;
   inputDate: Date;
   estimatedDeparture: Date;
-  dailyRate: number;
+  currentDailyCount: number;
   totalExpectedDaily: number;
 }
 

@@ -17,10 +17,12 @@ export default function Layout() {
             headerTitleAlign: "center",
             headerTitle: () => (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ fontSize: 18, color: "#09526e" }}>
+                <Text
+                  style={{ fontSize: 19, color: "#09526e", fontWeight: "400" }}
+                >
                   Cãotrolinn{" "}
                 </Text>
-                <Ionicons name="paw-outline" size={22} color="#09526e" />
+                <Ionicons name="paw-outline" size={23} color="#09526e" />
               </View>
             ),
           }}

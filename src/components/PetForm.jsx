@@ -13,14 +13,22 @@ import {
 } from "react-native-paper";
 import * as yup from "yup";
 
+import { DateInput } from "@/components/DateInput";
 import { editPet, createPet } from "@/services/hostedPetsService";
 
 const schema = yup.object({
   petName: yup.string().required("Nome do pet é obrigatório"),
   species: yup.string().required("Espécie é obrigatória"),
   breed: yup.string().required("Raça é obrigatória"),
-  inputDate: yup.date().required("Data de entrada é obrigatória"),
-  estimatedDeparture: yup.date(),
+  inputDate: yup
+    .date()
+    .required("Antes de continuar, confirme a datade de entrada"),
+  estimatedDeparture: yup
+    .date()
+    .min(
+      yup.ref("inputDate"),
+      "Data de saída não pode ser anterior à data de entrada"
+    ),
   totalExpectedDaily: yup.number().positive("Deve ser um número positivo"),
   petOwner: yup.string().required("Nome do tutor é obrigatório"),
   contact: yup.string().required("Contato é obrigatório"),
@@ -159,14 +167,11 @@ export const PetForm = ({ existingPet, mode = "create" }) => {
             control={control}
             name="inputDate"
             render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
+              <DateInput
                 label="Data de entrada"
-                activeUnderlineColor="#708841"
-                style={{ backgroundColor: "#c7d5bb5a" }}
-                value={value}
-                onChangeText={(text) => onChange(new Date(text))}
-                onBlur={onBlur}
-                left={<TextInput.Icon icon="calendar" />}
+                icon="calendar"
+                value={value || new Date()}
+                onChange={onChange}
               />
             )}
           />
@@ -178,41 +183,17 @@ export const PetForm = ({ existingPet, mode = "create" }) => {
             control={control}
             name="estimatedDeparture"
             render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                label="Previsão de saída"
-                activeUnderlineColor="#708841"
-                style={{ backgroundColor: "#c7d5bb5a" }}
-                value={value}
-                onChangeText={(text) => onChange(new Date(text))}
-                onBlur={onBlur}
-                left={<TextInput.Icon icon="calendar-check" />}
+              <DateInput
+                label="Data de saída"
+                icon="calendar-check"
+                value={value || new Date()}
+                onChange={onChange}
               />
             )}
           />
           {errors.estimatedDeparture && (
             <Text style={styles.labelError}>
               {errors.estimatedDeparture?.message}
-            </Text>
-          )}
-
-          <Controller
-            control={control}
-            name="totalExpectedDaily"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextInput
-                label="Diárias totais previstas"
-                activeUnderlineColor="#708841"
-                style={{ backgroundColor: "#c7d5bb5a" }}
-                value={value}
-                onChangeText={(text) => onChange(Number(text))}
-                onBlur={onBlur}
-                left={<TextInput.Icon icon="clock" />}
-              />
-            )}
-          />
-          {errors.totalExpectedDaily && (
-            <Text style={styles.labelError}>
-              {errors.totalExpectedDaily?.message}
             </Text>
           )}
 
@@ -270,7 +251,7 @@ export const PetForm = ({ existingPet, mode = "create" }) => {
 
 const styles = StyleSheet.create({
   Form: {
-    gap: 20,
+    gap: 30,
   },
   labelError: {
     alignSelf: "flex-start",

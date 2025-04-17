@@ -1,5 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { Stack, Link } from "expo-router";
+import moment from "moment";
 import { useState, useCallback } from "react";
 import {
   StyleSheet,
@@ -13,7 +14,6 @@ import { FAB, ActivityIndicator } from "react-native-paper";
 import { CardPet } from "@/components/Card";
 import { Container } from "@/components/Container";
 import { Separator } from "@/components/Separator";
-import { formatDate } from "@/components/formatDate";
 import { getAllPets, Pet } from "@/services/hostedPetsService";
 
 export default function Home() {
@@ -69,7 +69,9 @@ export default function Home() {
                         specie={item.species}
                         title={item.petName}
                         subtitle={item.petOwner}
-                        estimatedDeparture={formatDate(item.estimatedDeparture)}
+                        estimatedDeparture={moment(
+                          item.estimatedDeparture
+                        ).format("DD/MM/YYYY")}
                       />
                     </Link>
                   </TouchableOpacity>

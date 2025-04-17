@@ -1,9 +1,9 @@
+import moment from "moment";
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Surface, Text, TextInput } from "react-native-paper";
 
 import { Separator } from "@/components/Separator";
-import { formatDate } from "@/components/formatDate";
 import { Pet } from "@/services/hostedPetsService";
 
 type DetailCardProps = {
@@ -31,7 +31,9 @@ export const DetailCard: React.FC<DetailCardProps> = ({ pet }) => {
               <TextInput.Icon icon="calendar" />
             </Text>
             <Text>Data de entrada: </Text>
-            <Text style={styles.span}>{formatDate(pet.inputDate)}</Text>
+            <Text style={styles.span}>
+              {moment(pet.inputDate).format("DD/MM/YYYY")}
+            </Text>
           </View>
 
           <View style={styles.petInfoText}>
@@ -39,7 +41,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ pet }) => {
               <TextInput.Icon icon="calendar-clock" />
             </Text>
             <Text>Diárias até o momento: </Text>
-            <Text style={styles.span}>{pet.dailyRate}</Text>
+            <Text style={styles.span}>{pet.currentDailyCount}</Text>
           </View>
 
           <View style={styles.petInfoText}>
@@ -48,7 +50,7 @@ export const DetailCard: React.FC<DetailCardProps> = ({ pet }) => {
             </Text>
             <Text>Previsão de data de saída: </Text>
             <Text style={styles.span}>
-              {formatDate(pet.estimatedDeparture)}
+              {moment(pet.estimatedDeparture).format("DD/MM/YYYY")}
             </Text>
           </View>
 
