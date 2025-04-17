@@ -4,9 +4,8 @@ import { Avatar, Card } from "react-native-paper";
 export const CardPet: React.FC<{
   title: string;
   subtitle: string;
-  estimatedDeparture: string;
   specie: string;
-}> = ({ title, subtitle, estimatedDeparture, specie }) => {
+}> = ({ title, subtitle, specie }) => {
 
   console.log(specie);
   return (
@@ -25,11 +24,6 @@ export const CardPet: React.FC<{
             }}
           />
         )}
-        right={(props) => (
-          <View style={styles.dateBox}>
-            <Text style={styles.date}>{String(estimatedDeparture)}</Text>
-          </View>
-        )}
       />
     </View>
   );
@@ -38,13 +32,5 @@ export const CardPet: React.FC<{
 const styles = StyleSheet.create({
   cardContainer: {
     width: "100%",
-  },
-  dateBox: {
-    flex: 1,
-    marginTop: 5,
-  },
-  date: {
-    color: "#0a263b94",
-    fontSize: 12,
   },
 });

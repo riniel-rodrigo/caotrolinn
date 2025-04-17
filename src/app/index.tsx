@@ -20,7 +20,6 @@ import { getAllPets, Pet } from "@/services/hostedPetsService";
 export default function Home() {
   const [pets, setPets] = useState<Pet[]>([]);
   const [isloading, setIsLoading] = useState(true);
-  const [loadFailed, setLoadFailed] = useState(false);
   const [showRetry, setShowRetry] = useState(false);
 
   async function loadPets() {
@@ -91,9 +90,6 @@ export default function Home() {
                         specie={item.species}
                         title={item.petName}
                         subtitle={item.petOwner}
-                        estimatedDeparture={moment(
-                          item.estimatedDeparture
-                        ).format("DD/MM/YYYY")}
                       />
                     </Link>
                   </TouchableOpacity>
